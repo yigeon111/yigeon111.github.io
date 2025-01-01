@@ -23,43 +23,6 @@
         h1 {
             font-size: 2em;
         }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>나의 골프 통계</h1>
-    </header>
-    <div class="container">
-        <p>여기에 골프 기록을 입력하세요.</p>
-    </div>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 골프 통계</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        .container {
-            padding: 20px;
-        }
-        h1 {
-            font-size: 2em;
-        }
         .form-container {
             margin-top: 20px;
         }
@@ -77,6 +40,29 @@
         }
         input[type="submit"]:hover {
             background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            float: right;
+        }
+        .delete-button:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>
@@ -118,12 +104,18 @@
             // 기록 추가
             const recordList = document.getElementById("recordList");
             const newRecord = document.createElement("li");
-            newRecord.textContent = `코스: ${course}, 평균 타수: ${score}, 평균 퍼팅 수: ${putts}`;
+            newRecord.innerHTML = `코스: ${course}, 평균 타수: ${score}, 평균 퍼팅 수: ${putts} <button class="delete-button" onclick="deleteRecord(this)">삭제</button>`;
             recordList.appendChild(newRecord);
 
             // 폼 리셋
             document.getElementById("golfForm").reset();
         });
+
+        // 기록 삭제 기능
+        function deleteRecord(button) {
+            const record = button.parentElement;
+            record.remove();
+        }
     </script>
 </body>
 </html>
