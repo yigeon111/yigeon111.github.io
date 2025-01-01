@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 골프 통계</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 200px;
+            padding: 5px;
+            margin: 5px;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>나의 골프 통계</h1>
+    </header>
+    <div class="container">
+        <p>여기에 골프 기록을 입력하세요.</p>
+        <div class="form-container">
+            <form id="golfForm">
+                <label for="course">코스 이름:</label><br>
+                <input type="text" id="course" name="course" required><br>
+                <label for="score">평균 타수:</label><br>
+                <input type="number" id="score" name="score" required><br>
+                <label for="putts">평균 퍼팅 수:</label><br>
+                <input type="number" id="putts" name="putts" required><br>
+                <input type="submit" value="기록 추가">
+            </form>
+        </div>
+        <div id="statistics">
+            <h2>최근 기록</h2>
+            <ul id="recordList">
+                <!-- 기록 목록이 여기에 표시됩니다 -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 폼 제출 이벤트 처리
+        document.getElementById("golfForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // 폼 제출 기본 동작 방지
+
+            // 입력 값 가져오기
+            const course = document.getElementById("course").value;
+            const score = document.getElementById("score").value;
+            const putts = document.getElementById("putts").value;
+
+            // 기록 추가
+            const recordList = document.getElementById("recordList");
+            const newRecord = document.createElement("li");
+            newRecord.textContent = `코스: ${course}, 평균 타수: ${score}, 평균 퍼팅 수: ${putts}`;
+            recordList.appendChild(newRecord);
+
+            // 폼 리셋
+            document.getElementById("golfForm").reset();
+        });
+    </script>
+</body>
+</html>
